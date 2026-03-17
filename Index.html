@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>The Job Search Concierge — Grace Akoth | Career Pros Africa | Serving African Professionals</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+ :root {
+  --orange:    #E88700;
+  --orange-light: #FFA726;
+  --orange-glow: #E8870022;
+  --navy:     #0D1B2A;
+  --navy-mid:   #112238;
+  --navy-card:  #1A2F4A;
+  --navy-light:  #1E3A5F;
+  --slate:    #94A3B8;
+  --muted:    #64748B;
+  --divider:   #1E3A5F44;
+  --white:    #FFFFFF;
+  --cream:    #FFFBF5;
+  --text:     #CBD5E1;
+ }
+
+ *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+ html { scroll-behavior: smooth; }
+
+ body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--navy);
+  color: var(--text);
+  overflow-x: hidden;
+  line-height: 1.6;
+ }
+
+ /* NOISE TEXTURE OVERLAY */
+ body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none; z-index: 0; opacity: 0.4;
+ }
+
+ /* TOP ANNOUNCEMENT BAR */
+ .announcement {
+  background: var(--orange);
+  text-align: center;
+  padding: 10px 20px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--navy);
+  letter-spacing: 0.02em;
+  position: relative; z-index: 10;
+ }
+
+ /* NAV */
+ nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(13,27,42,0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--divider);
+  padding: 16px 40px;
+  display: flex; align-items: center; justify-content: space-between;
+ }
+ .nav-brand { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--white); }
+ .nav-brand span { color: var(--orange); }
+ .nav-cta {
+  background: var(--orange); color: var(--navy);
+  padding: 10px 24px; border-radius: 50px;
+  font-weight: 700; font-size: 13px;
+  text-decoration: none; letter-spacing: 0.03em;
+  transition: transform 0.2s, box-shadow 0.2s;
+ }
+ .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 24px var(--orange-glow); }
+
+ /* HERO */
+ .hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 80px 40px 60px;
+  position: relative; overflow: hidden;
+ }
+ .hero::before {
+  content: '';
+  position: absolute; top: -200px; right: -200px;
+  width: 700px; height: 700px; border-radius: 50%;
+  background: radial-gradient(circle, #1E3A5F55 0%, transparent 70%);
+  pointer-events: none;
+ }
+ .hero::after {
+  content: '';
+  position: absolute; bottom: -100px; left: -100px;
+  width: 400px; height: 400px; border-radius: 50%;
+  background: radial-gradient(circle, #E8870011 0%, transparent 70%);
+  pointer-events: none;
+ }
+ .hero-inner { max-width: 860px; margin: 0 auto; position: relative; z-index: 1; }
+
+ .hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--orange-glow); border: 1px solid var(--orange);
+  border-radius: 50px; padding: 8px 20px;
+  font-size: 12px; font-weight: 600; color: var(--orange);
+  letter-spacing: 0.08em; text-transform: uppercase;
+  margin-bottom: 32px;
+  animation: fadeUp 0.6s ease both;
+ }
+ .hero-eyebrow::before {
+  content: ''; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--orange); display: inline-block;
+  animation: pulse 2s infinite;
+ }
+ @keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.4); }
+ }
+
+ .hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(42px, 6vw, 72px);
+  font-weight: 900; line-height: 1.1;
+  color: var(--white); margin-bottom: 12px;
+  animation: fadeUp 0.6s 0.1s ease both;
+ }
+ .hero h1 em {
+  font-style: italic; color: var(--orange);
+  display: block;
+ }
+
+ .hero-sub {
+  font-size: clamp(17px, 2.2vw, 21px);
+  color: var(--slate); font-weight: 300;
+  max-width: 640px; margin-bottom: 40px; line-height: 1.65;
+  animation: fadeUp 0.6s 0.2s ease both;
+ }
+ .hero-sub strong { color: var(--white); font-weight: 600; }
+
+ .hero-price-block {
+  display: inline-flex; align-items: baseline; gap: 12px;
+  margin-bottom: 40px;
+  animation: fadeUp 0.6s 0.3s ease both;
+ }
+ .hero-price {
+  font-family: 'Playfair Display', serif;
+  font-size: 52px; font-weight: 700; color: var(--orange);
+ }
+ .hero-price-label {
+  font-size: 15px; color: var(--slate);
+  border-left: 2px solid var(--divider); padding-left: 12px;
+  line-height: 1.4;
+ }
+ .hero-price-label strong { display: block; color: var(--white); }
+
+ .hero-actions {
+  display: flex; gap: 16px; flex-wrap: wrap;
+  animation: fadeUp 0.6s 0.4s ease both;
+ }
+ .btn-primary {
+  background: var(--orange); color: var(--navy);
+  padding: 18px 36px; border-radius: 50px;
+  font-weight: 700; font-size: 15px;
+  text-decoration: none; letter-spacing: 0.02em;
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: inline-flex; align-items: center; gap: 8px;
+ }
+ .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 32px #E8870044; }
+ .btn-secondary {
+  border: 1.5px solid var(--navy-light); color: var(--slate);
+  padding: 18px 36px; border-radius: 50px;
+  font-weight: 500; font-size: 15px;
+  text-decoration: none;
+  transition: border-color 0.2s, color 0.2s;
+ }
+ .btn-secondary:hover { border-color: var(--orange); color: var(--orange); }
+
+ .hero-trust {
+  margin-top: 48px; display: flex; align-items: center; gap: 20px;
+  flex-wrap: wrap; animation: fadeUp 0.6s 0.5s ease both;
+ }
+ .trust-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); }
+ .trust-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--orange); }
+
+ @keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to  { opacity: 1; transform: translateY(0); }
+ }
+
+ /* SECTION BASE */
+ section { padding: 80px 40px; position: relative; z-index: 1; }
+ .section-inner { max-width: 960px; margin: 0 auto; }
+ .section-label {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--orange);
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 16px;
+ }
+ .section-label::after {
+  content: ''; flex: 1; max-width: 40px; height: 1px; background: var(--orange);
+ }
+ h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(30px, 4vw, 44px); font-weight: 700;
+  color: var(--white); line-height: 1.2; margin-bottom: 16px;
+ }
+ h2 span { color: var(--orange); }
+ .section-intro {
+  font-size: 17px; color: var(--slate);
+  max-width: 640px; line-height: 1.7; margin-bottom: 48px;
+ }
+
+ /* PROBLEM SECTION */
+ .problem { background: var(--navy-mid); }
+ .problem-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px; margin-top: 48px;
+ }
+ .problem-card {
+  background: var(--navy); border: 1px solid var(--divider);
+  border-radius: 16px; padding: 28px;
+  transition: border-color 0.3s, transform 0.3s;
+ }
+ .problem-card:hover { border-color: var(--orange); transform: translateY(-4px); }
+ .problem-icon { font-size: 28px; margin-bottom: 16px; }
+ .problem-card h3 { font-size: 17px; color: var(--white); font-weight: 600; margin-bottom: 10px; }
+ .problem-card p { font-size: 14px; color: var(--slate); line-height: 1.65; }
+
+ /* WHAT IS IT */
+ .what-is {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+ }
+ .what-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 48px; align-items: center; margin-top: 48px;
+ }
+ .what-left h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px; color: var(--white); margin-bottom: 20px;
+ }
+ .what-left p { font-size: 15px; color: var(--slate); line-height: 1.75; margin-bottom: 16px; }
+ .what-right {
+  background: var(--navy-card); border-radius: 20px;
+  border: 1px solid var(--divider); padding: 36px;
+  position: relative; overflow: hidden;
+ }
+ .what-right::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--orange), var(--orange-light));
+ }
+ .what-right h4 { font-size: 13px; color: var(--orange); font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 24px; }
+ .what-tag {
+  display: inline-block; background: var(--navy-light);
+  border: 1px solid var(--divider); border-radius: 50px;
+  padding: 8px 16px; font-size: 13px; color: var(--white);
+  margin: 4px; transition: background 0.2s;
+ }
+ .what-tag:hover { background: var(--orange); color: var(--navy); }
+
+ /* WHAT'S INCLUDED */
+ .included { background: var(--navy); }
+ .included-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px; margin-top: 48px;
+ }
+ .included-card {
+  background: var(--navy-card); border-radius: 16px;
+  border: 1px solid var(--divider); padding: 32px;
+  position: relative; overflow: hidden;
+  transition: transform 0.3s, border-color 0.3s;
+ }
+ .included-card:hover { transform: translateY(-4px); border-color: var(--orange); }
+ .included-card::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--orange), transparent);
+  opacity: 0; transition: opacity 0.3s;
+ }
+ .included-card:hover::after { opacity: 1; }
+ .card-week {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--orange); margin-bottom: 12px;
+ }
+ .included-card h3 { font-size: 18px; color: var(--white); font-weight: 600; margin-bottom: 12px; }
+ .included-card p { font-size: 14px; color: var(--slate); line-height: 1.65; }
+ .card-icon { font-size: 32px; margin-bottom: 16px; }
+
+ /* TIMELINE */
+ .timeline-section { background: var(--navy-mid); }
+ .timeline {
+  margin-top: 48px; position: relative;
+  padding-left: 32px;
+ }
+ .timeline::before {
+  content: ''; position: absolute; left: 8px; top: 8px; bottom: 8px;
+  width: 2px; background: linear-gradient(to bottom, var(--orange), var(--navy-light));
+ }
+ .timeline-item {
+  position: relative; margin-bottom: 36px; padding-left: 32px;
+ }
+ .timeline-dot {
+  position: absolute; left: -32px; top: 4px;
+  width: 18px; height: 18px; border-radius: 50%;
+  background: var(--orange); border: 3px solid var(--navy-mid);
+  box-shadow: 0 0 0 4px var(--orange-glow);
+ }
+ .timeline-week {
+  font-size: 11px; font-weight: 700; color: var(--orange);
+  letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px;
+ }
+ .timeline-item h3 { font-size: 17px; color: var(--white); font-weight: 600; margin-bottom: 8px; }
+ .timeline-item p { font-size: 14px; color: var(--slate); line-height: 1.65; }
+
+ /* WHO IS THIS FOR */
+ .who-for { background: var(--navy); }
+ .who-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 48px;
+ }
+ .who-yes, .who-no {
+  border-radius: 16px; padding: 32px;
+ }
+ .who-yes { background: #0D2818; border: 1px solid #22C55E33; }
+ .who-no { background: #2D0D0D; border: 1px solid #EF444433; }
+ .who-yes h3 { color: #4ADE80; font-size: 15px; font-weight: 700; margin-bottom: 20px; }
+ .who-no h3 { color: #F87171; font-size: 15px; font-weight: 700; margin-bottom: 20px; }
+ .who-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  margin-bottom: 14px; font-size: 14px; color: var(--slate); line-height: 1.5;
+ }
+ .who-item .check { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+
+ /* TESTIMONIAL */
+ .testimonial-section { background: var(--navy-mid); }
+ .testimonial-card {
+  background: var(--navy); border: 1px solid var(--divider);
+  border-radius: 20px; padding: 48px;
+  position: relative; overflow: hidden; max-width: 760px; margin: 0 auto;
+ }
+ .testimonial-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--orange), var(--orange-light));
+ }
+ .quote-mark {
+  font-family: 'Playfair Display', serif;
+  font-size: 120px; color: var(--orange); opacity: 0.2;
+  position: absolute; top: -20px; left: 32px; line-height: 1;
+  pointer-events: none;
+ }
+ .testimonial-text {
+  font-size: 18px; color: var(--white); line-height: 1.75;
+  font-style: italic; position: relative; z-index: 1;
+  margin-bottom: 32px;
+ }
+ .testimonial-author { display: flex; align-items: center; gap: 16px; }
+ .author-avatar {
+  width: 48px; height: 48px; border-radius: 50%;
+  background: var(--orange); display: flex; align-items: center;
+  justify-content: center; font-weight: 700; color: var(--navy); font-size: 18px;
+  flex-shrink: 0;
+ }
+ .author-name { font-weight: 700; color: var(--white); font-size: 15px; }
+ .author-role { font-size: 13px; color: var(--slate); }
+
+ /* INVESTMENT */
+ .investment { background: var(--navy); }
+ .investment-card {
+  background: var(--navy-card); border: 1px solid var(--orange);
+  border-radius: 24px; padding: 56px 48px;
+  max-width: 680px; margin: 48px auto 0;
+  text-align: center; position: relative; overflow: hidden;
+  box-shadow: 0 0 80px #E8870015;
+ }
+ .investment-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+  background: linear-gradient(90deg, var(--orange), var(--orange-light), var(--orange));
+ }
+ .flagship-badge {
+  display: inline-block; background: var(--orange); color: var(--navy);
+  padding: 6px 20px; border-radius: 50px;
+  font-size: 11px; font-weight: 800; letter-spacing: 0.1em;
+  text-transform: uppercase; margin-bottom: 24px;
+ }
+ .investment-amount {
+  font-family: 'Playfair Display', serif;
+  font-size: 64px; font-weight: 900; color: var(--orange);
+  line-height: 1; margin-bottom: 8px;
+ }
+ .investment-period { font-size: 16px; color: var(--slate); margin-bottom: 32px; }
+ .investment-divider {
+  width: 60px; height: 2px; background: var(--orange);
+  margin: 0 auto 32px;
+ }
+ .investment-includes { text-align: left; margin-bottom: 40px; }
+ .inv-item {
+  display: flex; align-items: flex-start; gap: 14px;
+  padding: 12px 0; border-bottom: 1px solid var(--divider);
+  font-size: 15px; color: var(--text);
+ }
+ .inv-item:last-child { border-bottom: none; }
+ .inv-check { color: var(--orange); font-size: 18px; flex-shrink: 0; }
+ .inv-item strong { color: var(--white); }
+
+ .spots-warning {
+  background: var(--orange-glow); border: 1px solid var(--orange);
+  border-radius: 12px; padding: 16px 20px;
+  font-size: 14px; color: var(--orange); font-weight: 600;
+  margin-bottom: 32px; text-align: center;
+ }
+
+ .cta-stack { display: flex; flex-direction: column; gap: 12px; }
+ .btn-full {
+  display: block; text-align: center;
+  background: var(--orange); color: var(--navy);
+  padding: 20px 36px; border-radius: 50px;
+  font-weight: 800; font-size: 16px; letter-spacing: 0.02em;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+ }
+ .btn-full:hover { transform: translateY(-3px); box-shadow: 0 16px 40px #E8870044; }
+ .btn-outline-full {
+  display: block; text-align: center;
+  border: 1.5px solid var(--navy-light); color: var(--slate);
+  padding: 16px 36px; border-radius: 50px;
+  font-weight: 500; font-size: 14px;
+  text-decoration: none;
+  transition: border-color 0.2s, color 0.2s;
+ }
+ .btn-outline-full:hover { border-color: var(--orange); color: var(--orange); }
+ .payment-note { font-size: 12px; color: var(--muted); margin-top: 16px; }
+
+ /* ABOUT GRACE */
+ .about { background: var(--navy-mid); }
+ .about-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 56px; align-items: center; margin-top: 48px; }
+ .about-photo {
+  aspect-ratio: 4/5; border-radius: 20px;
+  background: var(--navy-card); border: 1px solid var(--divider);
+  position: relative; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+ }
+ .about-photo-icon {
+  font-size: 80px; opacity: 0.3;
+ }
+ .about-photo::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+  height: 50%; background: linear-gradient(to top, var(--navy-card), transparent);
+ }
+ .about-photo-label {
+  position: absolute; bottom: 20px; left: 20px; right: 20px; z-index: 2;
+  font-size: 13px; color: var(--white); font-weight: 600;
+ }
+ .about-photo-label span { color: var(--orange); }
+ .about-content h2 { margin-bottom: 20px; }
+ .about-content p { font-size: 15px; color: var(--slate); line-height: 1.75; margin-bottom: 16px; }
+ .about-stats { display: flex; gap: 32px; margin-top: 32px; flex-wrap: wrap; }
+ .stat { text-align: left; }
+ .stat-num { font-family: 'Playfair Display', serif; font-size: 36px; color: var(--orange); font-weight: 700; }
+ .stat-label { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+ /* FAQ */
+ .faq { background: var(--navy); }
+ .faq-list { max-width: 680px; margin: 48px auto 0; }
+ .faq-item { border-bottom: 1px solid var(--divider); padding: 24px 0; }
+ .faq-q {
+  font-size: 16px; color: var(--white); font-weight: 600;
+  cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+  gap: 16px;
+ }
+ .faq-q::after { content: '+'; color: var(--orange); font-size: 22px; flex-shrink: 0; }
+ .faq-a { font-size: 14px; color: var(--slate); line-height: 1.7; margin-top: 12px; }
+
+ /* FINAL CTA */
+ .final-cta {
+  background: var(--navy-mid);
+  text-align: center; padding: 100px 40px;
+ }
+ .final-cta h2 { font-size: clamp(32px, 5vw, 52px); margin-bottom: 20px; }
+ .final-cta p { font-size: 17px; color: var(--slate); max-width: 520px;
+  margin: 0 auto 40px; line-height: 1.7; }
+
+ /* FOOTER */
+ footer {
+  background: var(--navy); border-top: 1px solid var(--divider);
+  padding: 32px 40px; text-align: center;
+  font-size: 13px; color: var(--muted);
+ }
+ footer a { color: var(--orange); text-decoration: none; }
+ footer a:hover { text-decoration: underline; }
+
+ /* RESPONSIVE */
+ @media (max-width: 768px) {
+  nav { padding: 14px 20px; }
+  section { padding: 60px 20px; }
+  .hero { padding: 60px 20px 40px; }
+  .what-grid, .who-grid, .about-grid { grid-template-columns: 1fr; }
+  .investment-card { padding: 36px 24px; }
+  .investment-amount { font-size: 48px; }
+  h2 { font-size: 28px; }
+ }
+</style>
+</head>
+<body>
+
+<!-- ANNOUNCEMENT BAR -->
+<div class="announcement">
+  Only 3 spots available per month — Apply via the form below
+</div>
+
+<!-- NAV -->
+<nav>
+ <div class="nav-brand">Grace <span>Akoth</span></div>
+ <a href="https://forms.gle/sD52o6fWotySgwhu9" class="nav-cta" target="_blank">Apply Now →</a>
+</nav>
+
+<!-- 
+   HERO
+ -->
+<section class="hero">
+ <div class="hero-inner">
+  <div class="hero-eyebrow">Flagship Service — The Job Search Concierge</div>
+
+  <h1>
+   Your Career,
+   <em>Managed for You.</em>
+  </h1>
+
+  <p class="hero-sub">
+   You are a senior African professional with <strong>too much to do and too little time</strong>
+   to run a serious job search. I run it for you — strategy, positioning,
+   outreach, applications, and everything in between —
+   so you can stay focused while I get you in front of the right people.
+  </p>
+
+  <div class="hero-price-block">
+   <div class="hero-price">KSh 80,000</div>
+   <div class="hero-price-label">
+    <strong>3-Month Full-Service Programme</strong>
+    Done-for-you executive job search
+   </div>
+  </div>
+
+  <div class="hero-actions">
+   <a href="https://forms.gle/sD52o6fWotySgwhu9" class="btn-primary" target="_blank">Apply for a Spot →</a>
+   <a href="#included" class="btn-secondary">See What's Included</a>
+  </div>
+
+  <div class="hero-trust">
+   <div class="trust-item"><div class="trust-dot"></div> Serving senior African professionals across Kenya, East Africa and beyond</div>
+   <div class="trust-item"><div class="trust-dot"></div> 10+ years in HR & career strategy</div>
+   <div class="trust-item"><div class="trust-dot"></div> Trusted by Pernod Ricard Kenya, Multichoice & Empactive Solutions</div>
+  </div>
+ </div>
+</section>
+
+<!-- 
+   THE PROBLEM
+ -->
+<section class="problem">
+ <div class="section-inner">
+  <div class="section-label">The Reality</div>
+  <h2>You know what you need to do.<br/><span>You just don't have time to do it.</span></h2>
+  <p class="section-intro">
+   Most senior African professionals are not struggling because they lack talent or experience.
+   They're stuck because running a serious job search is a full-time job in itself —
+   and you already have one.
+  </p>
+  <div class="problem-grid">
+   <div class="problem-card">
+    <div class="problem-icon"></div>
+    <h3>No Time to Do It Properly</h3>
+    <p>Between your current role, your family, and your life — when exactly are you supposed to rewrite your CV, optimise your LinkedIn, research target companies, and reach out to decision-makers?</p>
+   </div>
+   <div class="problem-card">
+    <div class="problem-icon"></div>
+    <h3>Applying Into Silence</h3>
+    <p>You've sent applications. You've updated your CV. You've connected with people on LinkedIn. And still — nothing. The African job market has evolved dramatically. The approach that worked 5 years ago — and the CV format your university taught you — no longer works.</p>
+   </div>
+   <div class="problem-card">
+    <div class="problem-icon"></div>
+    <h3>Not Positioned for the Right Roles</h3>
+    <p>Your experience is exceptional but your profile doesn't reflect it. Recruiters and hiring managers can't see what you're capable of because you haven't packaged it the right way.</p>
+   </div>
+   <div class="problem-card">
+    <div class="problem-icon"></div>
+    <h3>Leaving Money on the Table</h3>
+    <p>Most executives accept the first offer because they don't know how to negotiate or they're too fatigued from the job search to push back. The right strategy changes that.</p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- 
+   WHAT IS THE CONCIERGE
+ -->
+<section class="what-is">
+ <div class="section-inner">
+  <div class="what-grid">
+   <div class="what-left">
+    <div class="section-label">What It Is</div>
+    <h2>Your Personal<br/><span>Career Campaign Manager.</span></h2>
+    <p>The Job Search Concierge is not a coaching programme where I give you homework and you figure it out. It is a fully managed, done-for-you executive job search operation — where I do the work while you show up for the right opportunities.</p>
+    <p>Think of it as having a dedicated career strategist, personal branding expert, and talent acquisition professional working exclusively on your career for 3 months.</p>
+    <p>You stay focused on your current role and your life. I handle everything behind the scenes — building your positioning, running your outreach, managing your applications, and preparing you to win when the right opportunity knocks.</p>
+   </div>
+   <div class="what-right">
+    <h4>This Service Covers Every Part of Your Job Search</h4>
+    <div>
+     <span class="what-tag">CV Rewrite</span>
+     <span class="what-tag">LinkedIn Overhaul</span>
+     <span class="what-tag">Executive Branding</span>
+     <span class="what-tag">Target Company Research</span>
+     <span class="what-tag">Recruiter Outreach</span>
+     <span class="what-tag">Hiring Manager DMs</span>
+     <span class="what-tag">Job Applications</span>
+     <span class="what-tag">Network Activation</span>
+     <span class="what-tag">Interview Coaching</span>
+     <span class="what-tag">Offer Evaluation</span>
+     <span class="what-tag">Salary Negotiation</span>
+     <span class="what-tag">Weekly Strategy Calls</span>
+     <span class="what-tag">Progress Reporting</span>
+     <span class="what-tag">Follow-Up Management</span>
+    </div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- 
+   WHAT'S INCLUDED
+ -->
+<section class="included" id="included">
+ <div class="section-inner">
+  <div class="section-label">Full Scope of Service</div>
+  <h2>Everything Included.<br/><span>Nothing Left Out.</span></h2>
+  <p class="section-intro">
+   From the moment you join, I take over your job search campaign entirely.
+   Here is exactly what happens across your 3 months together.
+  </p>
+  <div class="included-grid">
+   <div class="included-card">
+    <div class="card-icon"></div>
+    <div class="card-week">Foundation</div>
+    <h3>Executive CV Rewrite</h3>
+    <p>A complete rewrite of your CV using achievements-first, CAR-methodology formatting. ATS-optimised, tailored to your target roles, and written to position you at the executive level you deserve.</p>
+   </div>
+   <div class="included-card">
+    <div class="card-icon"></div>
+    <div class="card-week">Foundation</div>
+    <h3>LinkedIn Profile Overhaul</h3>
+    <p>Full rewrite of your headline, About section, Experience, and Featured section. Keyword strategy, custom banner design, and connection growth guidance to make you visible to the right people.</p>
+   </div>
+   <div class="included-card">
+    <div class="card-icon"></div>
+    <div class="card-week">Campaign</div>
+    <h3>Strategic Job Applications</h3>
+    <p>I research your target roles and companies, tailor your application materials for each opportunity, and submit applications on your behalf — strategically, not randomly.</p>
+   </div>
+   <div class="included-card">
+    <div class="card-icon"></div>
+    <div class="card-week">Campaign</div>
+    <h3>Recruiter & Hiring Manager Outreach</h3>
+    <p>I reach out directly to recruiters, headhunters, and hiring managers on LinkedIn on your behalf — personalised, professional messages that open doors the job boards never will.</p>
+   </div>
+   <div class="included-card">
+    <div class="card-icon"></div>
+    <div class="card-week">Preparation</div>
+    <h3>Interview Preparation & Coaching</h3>
+    <p>Dedicated interview coaching sessions covering behavioural questions, executive presence, how to handle tough questions, and how to position yourself as the obvious choice.</p>
+   </div>
+   <div class="included-card">
+    <div class="card-icon"></div>
+    <div class="card-week">Close</div>
+    <h3>Salary Negotiation Coaching</h3>
+    <p>I prepare you to negotiate your offer with confidence — including what to say, when to say it, and how to counter without losing the offer. Most clients recover the cost of this programme in their first negotiation.</p>
+   </div>
+   <div class="included-card">
+    <div class="card-icon"></div>
+    <div class="card-week">Throughout</div>
+    <h3>Weekly 1:1 Strategy Calls</h3>
+    <p>A dedicated weekly call to review campaign progress, discuss opportunities in the pipeline, refine strategy, and ensure you are fully prepared for whatever comes next.</p>
+   </div>
+   <div class="included-card">
+    <div class="card-icon"></div>
+    <div class="card-week">Throughout</div>
+    <h3>Weekly Progress Reports</h3>
+    <p>A clear weekly update on campaign activity — outreach sent, applications submitted, responses received, and pipeline status — so you always know exactly where things stand.</p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- 
+   3-MONTH TIMELINE
+ -->
+<section class="timeline-section">
+ <div class="section-inner">
+  <div class="section-label">Programme Journey</div>
+  <h2>Your 3 Months,<br/><span>Month by Month.</span></h2>
+  <p class="section-intro">
+   Every week has a clear focus and deliverable.
+   You always know what is happening and what is coming next.
+  </p>
+  <div class="timeline">
+   <div class="timeline-item">
+    <div class="timeline-dot"></div>
+    <div class="timeline-week">Month 1 — Phase 1 — Foundation</div>
+    <h3>Deep Dive & Positioning</h3>
+    <p>Intake call to understand your career goals, target roles, and ideal companies. Full CV rewrite and LinkedIn overhaul completed. Target company list built. Your campaign strategy defined.</p>
+   </div>
+   <div class="timeline-item">
+    <div class="timeline-dot"></div>
+    <div class="timeline-week">Month 1 — Phase 2 — Launch</div>
+    <h3>Campaign Goes Live</h3>
+    <p>Outreach begins to recruiters, headhunters, and hiring managers. Strategic applications submitted to target roles. Network activation on LinkedIn. First progress report delivered.</p>
+   </div>
+   <div class="timeline-item">
+    <div class="timeline-dot"></div>
+    <div class="timeline-week">Month 2 — Momentum</div>
+    <h3>Pipeline Building & Interview Prep</h3>
+    <p>Campaign activity continues at full pace. Interview coaching sessions begin. Responses and opportunities reviewed and prioritised. Strategy adjusted based on market feedback.</p>
+   </div>
+   <div class="timeline-item">
+    <div class="timeline-dot"></div>
+    <div class="timeline-week">Month 3 — Close</div>
+    <h3>Interviews, Offers & Negotiation</h3>
+    <p>Final interview preparation and mock sessions. Offer evaluation support. Salary negotiation coaching. Campaign wrap-up and career momentum plan for beyond the programme.</p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- 
+   WHO IS THIS FOR
+ -->
+<section class="who-for">
+ <div class="section-inner">
+  <div class="section-label">Right Fit</div>
+  <h2>This Is For You <span>If —</span></h2>
+  <div class="who-grid">
+   <div class="who-yes">
+    <h3> &nbsp; The Concierge Is Right For You</h3>
+    <div class="who-item"><span class="check"></span><span>You are a senior African professional — manager, director, or executive — with 8+ years of experience</span></div>
+    <div class="who-item"><span class="check"></span><span>You are ready to invest seriously in a career move and want results, not advice</span></div>
+    <div class="who-item"><span class="check"></span><span>Your current job search is going nowhere despite your experience level</span></div>
+    <div class="who-item"><span class="check"></span><span>You are too busy to run a proper job search alongside your current responsibilities</span></div>
+    <div class="who-item"><span class="check"></span><span>You want to move into a higher-paying or more senior role in the next 2–4 months</span></div>
+    <div class="who-item"><span class="check"></span><span>You value your time and understand that delegation is a strategic skill</span></div>
+   </div>
+   <div class="who-no">
+    <h3> &nbsp; This Is Not The Right Fit If</h3>
+    <div class="who-item"><span class="check"></span><span>You are looking for a passive programme where you watch videos and do nothing</span></div>
+    <div class="who-item"><span class="check"></span><span>You are not ready to attend interviews, take calls, or actively participate when needed</span></div>
+    <div class="who-item"><span class="check"></span><span>You expect a guaranteed job offer — this is a campaign, not a placement agency</span></div>
+    <div class="who-item"><span class="check"></span><span>You are not open to honest feedback about your positioning or approach</span></div>
+    <div class="who-item"><span class="check"></span><span>You are not ready to invest in your career at this level right now</span></div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- 
+   TESTIMONIAL
+ -->
+<section class="testimonial-section">
+ <div class="section-inner">
+  <div class="section-label" style="justify-content: center;">What Clients Say</div>
+  <div class="testimonial-card">
+   <div class="quote-mark">"</div>
+   <p class="testimonial-text">
+    "Grace was one of the two external coaches at Empactive Solutions who ran a programme to support our exited teammates during a downsizing across Africa. The plan they built was very well designed and executed. She led individual sessions covering all aspects of a job search — CV and LinkedIn revisions, interview training — and most importantly, she gave time and emotional support to each teammate to unpack their professional ambition while building confidence and energy for their respective job searches."
+   </p>
+   <div class="testimonial-author">
+    <div class="author-avatar">F</div>
+    <div>
+     <div class="author-name">Frédéric Soulignac</div>
+     <div class="author-role">Managing Director, Pernod Ricard Kenya</div>
+    </div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- 
+   INVESTMENT
+ -->
+<section class="investment" id="apply">
+ <div class="section-inner">
+  <div class="section-label" style="justify-content: center;">The Investment</div>
+  <h2 style="text-align:center;">Simple, Transparent <span>Pricing.</span></h2>
+  <div class="investment-card">
+   <div class="flagship-badge"> Flagship Service</div>
+   <div class="investment-amount">KSh 80,000</div>
+   <div class="investment-period">Full 3-Month Job Search Concierge Programme</div>
+   <div class="investment-divider"></div>
+
+   <div class="investment-includes">
+    <div class="inv-item"><span class="inv-check"></span><div><strong>Executive CV Rewrite</strong> — achievements-first, ATS-optimised</div></div>
+    <div class="inv-item"><span class="inv-check"></span><div><strong>Full LinkedIn Profile Overhaul</strong> — rewrite, banner, keyword strategy</div></div>
+    <div class="inv-item"><span class="inv-check"></span><div><strong>Strategic Job Applications</strong> — researched, tailored, submitted on your behalf</div></div>
+    <div class="inv-item"><span class="inv-check"></span><div><strong>Recruiter & Hiring Manager Outreach</strong> — direct LinkedIn campaign on your behalf</div></div>
+    <div class="inv-item"><span class="inv-check"></span><div><strong>Interview Preparation & Coaching</strong> — dedicated sessions per interview</div></div>
+    <div class="inv-item"><span class="inv-check"></span><div><strong>Salary Negotiation Coaching</strong> — close the right offer at the right number</div></div>
+    <div class="inv-item"><span class="inv-check"></span><div><strong>12 × Weekly 1:1 Strategy Calls</strong> — dedicated time every week</div></div>
+    <div class="inv-item"><span class="inv-check"></span><div><strong>Weekly Progress Reports</strong> — full transparency on campaign activity</div></div>
+   </div>
+
+   <div class="spots-warning">
+     &nbsp; Only 3 spots available per month. Applications reviewed in order received.
+   </div>
+
+   <div class="cta-stack">
+    <a href="https://forms.gle/sD52o6fWotySgwhu9" class="btn-full" target="_blank">Apply for Your Spot — Fill in the Application Form</a>
+    <a href="https://wa.me/254723155317?text=Hi%20Grace%2C%20I%20am%20interested%20in%20the%20Job%20Search%20Concierge.%20Can%20we%20talk%3F" class="btn-outline-full" target="_blank">Prefer WhatsApp? Message Grace Instead</a>
+   </div>
+
+   <p class="payment-note">Payment via M-Pesa, bank transfer, or card. Split payment available on request.<br/>WhatsApp: <strong>+254 723 155 317</strong> &nbsp;|&nbsp; Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="4b2c392a282e2a20243f237a0b2c262a222765282426">[email&#160;protected]</a> &nbsp;|&nbsp; <a href="https://www.careerprosafrica.com" target="_blank">careerprosafrica.com</a></p>
+  </div>
+ </div>
+</section>
+
+<!-- 
+   ABOUT GRACE
+ -->
+<section class="about">
+ <div class="section-inner">
+  <div class="about-grid">
+   <div class="about-photo">
+    <img src="https://graceakoth.github.io/jobsearchconcierge/grace.jpg"
+         alt="Grace Akoth — Career Strategist & Founder, Career Pros Africa"
+         style="width:100%; height:100%; object-fit:cover; object-position:top; border-radius:20px; display:block;"/>
+    <div class="about-photo-label">
+     <strong>Grace Akoth</strong><br/>
+     <span>Career Strategist &amp; Founder</span>
+    </div>
+   </div>
+   <div class="about-content">
+    <div class="section-label">Your Career Strategist</div>
+    <h2>Meet <span>Grace Akoth.</span></h2>
+    <p>I am a Career Strategist and the Founder of Career Pros Africa, with over 10 years of experience in Human Resources and career development across Africa and East Africa.</p>
+    <p>I have worked with professionals at every career level — from ambitious graduates to C-suite executives — across Kenya, East Africa, and the broader African continent, partnering with organisations including Pernod Ricard Kenya, Multichoice, and Empactive Solutions to support professionals through restructuring, transitions, and career growth.</p>
+    <p>The Job Search Concierge was built because I kept watching talented, experienced professionals lose out on opportunities they deserved — not because they lacked ability, but because they didn't have the time, the positioning, or the strategy to compete in today's market.</p>
+    <p>I built the service I wish every executive had access to.</p>
+    <div class="about-stats">
+     <div class="stat"><div class="stat-num">10+</div><div class="stat-label">Years in HR & Career Strategy</div></div>
+     <div class="stat"><div class="stat-num">500+</div><div class="stat-label">Professionals Served</div></div>
+     <div class="stat"><div class="stat-num">3+</div><div class="stat-label">Corporate Organisations</div></div>
+    </div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- 
+   FAQ
+ -->
+<section class="faq">
+ <div class="section-inner">
+  <div class="section-label" style="justify-content: center;">Questions</div>
+  <h2 style="text-align:center;">Frequently Asked <span>Questions.</span></h2>
+  <div class="faq-list">
+   <div class="faq-item">
+    <div class="faq-q">Do you guarantee I will get a job in 3 months?</div>
+    <div class="faq-a">I do not guarantee a job offer — no ethical career professional can. What I guarantee is a fully executed, professional job search campaign. Most clients begin receiving interview invitations within the first 4–6 weeks. Some secure offers within the 3-month window; others take a few weeks beyond. The campaign continues to work after the programme ends because of the positioning we build together.</div>
+   </div>
+   <div class="faq-item">
+    <div class="faq-q">How much of my time is required each week?</div>
+    <div class="faq-a">Typically 2–3 hours per week — primarily your weekly strategy call, reviewing any materials I have prepared, and attending interviews as they come in. I handle all the behind-the-scenes work so your time investment is minimal but always purposeful.</div>
+   </div>
+   <div class="faq-item">
+    <div class="faq-q">Do you need access to my LinkedIn account?</div>
+    <div class="faq-a">Yes. To send messages, submit applications, and manage outreach on your behalf, I will need temporary login access to your LinkedIn account. All activity is conducted professionally and with your full visibility. You remain in control at all times.</div>
+   </div>
+   <div class="faq-item">
+    <div class="faq-q">What types of roles do you specialise in?</div>
+    <div class="faq-a">I work primarily with senior managers, directors, heads of department, and C-suite executives across industries including FMCG, technology, financial services, media, NGOs, and professional services across Africa.</div>
+   </div>
+   <div class="faq-item">
+    <div class="faq-q">Can I pay in instalments?</div>
+    <div class="faq-a">Yes. A split payment arrangement is available upon request — typically 50% at commencement and 50% at the start of Month 2. Please mention this when you apply and we will discuss what works for you.</div>
+   </div>
+   <div class="faq-item">
+    <div class="faq-q">How do I apply?</div>
+    <div class="faq-a">Email <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="a7c0d5c6c4c2c6ccc8d3cf96e7c0cac6cecb89c4c8ca">[email&#160;protected]</a> with your name, current role, what you are looking to achieve, and your target timeline. I will review your application and respond within 48 hours. If there is a fit, we will schedule a brief discovery call before confirming your spot.</div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- 
+   FINAL CTA
+ -->
+<section class="final-cta">
+ <div class="section-label" style="justify-content: center; margin-bottom: 24px;">Ready to Start</div>
+ <h2>Stop Waiting for<br/><span>the Right Opportunity.</span></h2>
+ <p>The right opportunity is not going to find you while you are too busy to look for it.
+   Let me look for it — and get you in front 
